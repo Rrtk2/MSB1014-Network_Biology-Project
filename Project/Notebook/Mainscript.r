@@ -60,7 +60,7 @@ DataFolderLocation 		= "/Github/MSB1014-Network_Biology-Project/Project/Notebook
 if(Sys.info()[6]=="RR"){
 	data_dir <- paste("D:",DataFolderLocation,sep="")  # Rick's link (laptop)
 }else if(Sys.info()[6]=="Admin"){
-	data_dir <- paste("E:",DataFolderLocation,sep="")  # Rick's other link (desktop)
+	data_dir <- paste("D:/Games",DataFolderLocation,sep="")  # Rick's other link (desktop)
 }
 
 # Get folder and move to one level above, then make new folder containing timestamp
@@ -92,10 +92,14 @@ length(E(trueGraph))
 #-----------------------------------------------------------------------------------------------------#
 
 # Get motifs fromgraph and plot the motifs with frequency
-GetMotifsFromGraph = function(graph.name, motifsize = 4, directed=TRUE, amountRandomNets = 1000){
+GetMotifsFromGraph = function(graph.name, motifsize = 4, directed=TRUE, amountRandomNets = 1000, betaFactor = 1.3){
+# motifsize = 4 # motif size
+# directed = TRUE # directed 
+# amountRandomNets = 1000 # amount of random nets
+# betaFactor = 1.3 # The probability distribution in 'amountRandomNets' networks is risen to the power of beta, to cut on significant motifs
 
 	graph = get(graph.name)
-	if(exists("randomNetMotifsTotal")){rm(randomNetMotifsTotal)}
+	#if(exists("randomNetMotifsTotal")){rm(randomNetMotifsTotal)}
 	
 	# Find network motifs in the graph "graph":
 	mygraphmotifs <- graph.motifs(graph, motifsize)
@@ -146,8 +150,12 @@ GetMotifsFromGraph = function(graph.name, motifsize = 4, directed=TRUE, amountRa
 	randomNetMotifsTotal = randomNetMotifsTotal/amountRandomNets
 
 	# Which occured more than random:
-	impMotifIndex = which(mygraphmotifs>(randomNetMotifsTotal))-1
-	print(impMotifIndex)
+	impMotifIndex = which(mygraphmotifs>(randomNetMotifsTotal^betaFactor))-1
+	if(length(impMotifIndex) == 0 ){
+		print("no significant motifs")
+		}else{
+		print(impMotifIndex)
+	}
 }
 #-----------------------------------------------------------------------------------------------------#
 #							Bayesian networks
