@@ -155,8 +155,24 @@ GetMotifsFromGraph = function(graph.name, motifsize = 4, directed=TRUE, amountRa
 		print("no significant motifs")
 		}else{
 		print(impMotifIndex)
+		for(i in 1:length(impMotifIndex)){
+			pattern = graph.isocreate(size=motifsize, number=impMotifIndex[i], directed=directed)
+			iso <- subgraph_isomorphisms(pattern, graph)      # takes a while
+			motifsZ <- lapply(iso, function (x) { induced_subgraph(graph, x) })
+		}
 	}
+	
+	
 }
+
+# pattern = graph.isocreate(size=motifsize, number=3, directed=directed)
+ # iso <- subgraph_isomorphisms(pattern, graph)      # takes a while
+ # motifsZ <- lapply(iso, function (x) { induced_subgraph(graph, x) })
+
+# isomorphic(motifsZ[[1]],motifsZ[[2]])
+
+
+
 #-----------------------------------------------------------------------------------------------------#
 #							Bayesian networks
 #-----------------------------------------------------------------------------------------------------#
