@@ -76,15 +76,15 @@ set.seed(1) # for reproducibility of results
 #-----------------------------------------------------------------------------------------------------#
 #							True network definition and analalysis
 #-----------------------------------------------------------------------------------------------------#
-trueGraph = graph_from_literal(ErbB3.P--+Ras.GTP,ErbB3.P--+Gab1.P,ErbB3.P--+ErbB1.P,ErbB3.P--+PIP2,ErbB3.P--+SHC.P,ErbB3.P--+ErbB2.P,ErbB3.P--+PIP3,ERK.P.P--+ErbB3.P,ERK.P.P--+Gab1.P,ERK.P.P--+SOS.P,ERK.P.P--+ErbB1.P,ERK.P.P--+ErbB2.P,ERK.P.P--+ERK.P,Ras.GTP--+ErbB3.P,Ras.GTP--+ErbB1.P,Ras.GTP--+ErbB4.P,Ras.GTP--+SHC.P,Ras.GTP--+RAF.P,Ras.GTP--+ErbB2.P,MEK.P.P--+ERK.P.P,MEK.P.P--+MEK.P,MEK.P.P--+ERK.P,Gab1.P--+ErbB3.P,Gab1.P--+Ras.GTP,Gab1.P--+ErbB1.P,Gab1.P--+ErbB4.P,Gab1.P--+PIP2,Gab1.P--+ErbB2.P,Gab1.P--+PIP3,ErbB1.P--+ErbB3.P,ErbB1.P--+Ras.GTP,ErbB1.P--+Gab1.P,ErbB1.P--+SOS.P,ErbB1.P--+ErbB4.P,ErbB1.P--+PIP2,ErbB1.P--+SHC.P,ErbB1.P--+ErbB2.P,ErbB1.P--+PIP3,AKT.P--+AKT.P.P,ErbB4.P--+Ras.GTP,ErbB4.P--+Gab1.P,ErbB4.P--+ErbB1.P,ErbB4.P--+PIP2,ErbB4.P--+SHC.P,ErbB4.P--+ErbB2.P,ErbB4.P--+PIP3,PIP2--+Gab1.P,PIP2--+ErbB4.P,PIP2--+ErbB2.P,PIP2--+PIP3,MEK.P--+MEK.P.P,SHC.P--+ErbB3.P,SHC.P--+Ras.GTP,SHC.P--+SOS.P,SHC.P--+ErbB1.P,SHC.P--+ErbB4.P,SHC.P--+ErbB2.P,RAF.P--+Ras.GTP,RAF.P--+MEK.P.P,RAF.P--+MEK.P,ErbB2.P--+ErbB3.P,ErbB2.P--+Ras.GTP,ErbB2.P--+Gab1.P,ErbB2.P--+ErbB1.P,ErbB2.P--+ErbB4.P,ErbB2.P--+PIP2,ErbB2.P--+SHC.P,ErbB2.P--+PIP3,ERK.P--+ERK.P.P,PIP3--+AKT.P,PIP3--+PIP2,PIP3--+AKT.P.P,AKT.P.P--+AKT.P,AKT.P.P--+RAF.P)
+graph.True = graph_from_literal(ErbB3.P--+Ras.GTP,ErbB3.P--+Gab1.P,ErbB3.P--+ErbB1.P,ErbB3.P--+PIP2,ErbB3.P--+SHC.P,ErbB3.P--+ErbB2.P,ErbB3.P--+PIP3,ERK.P.P--+ErbB3.P,ERK.P.P--+Gab1.P,ERK.P.P--+SOS.P,ERK.P.P--+ErbB1.P,ERK.P.P--+ErbB2.P,ERK.P.P--+ERK.P,Ras.GTP--+ErbB3.P,Ras.GTP--+ErbB1.P,Ras.GTP--+ErbB4.P,Ras.GTP--+SHC.P,Ras.GTP--+RAF.P,Ras.GTP--+ErbB2.P,MEK.P.P--+ERK.P.P,MEK.P.P--+MEK.P,MEK.P.P--+ERK.P,Gab1.P--+ErbB3.P,Gab1.P--+Ras.GTP,Gab1.P--+ErbB1.P,Gab1.P--+ErbB4.P,Gab1.P--+PIP2,Gab1.P--+ErbB2.P,Gab1.P--+PIP3,ErbB1.P--+ErbB3.P,ErbB1.P--+Ras.GTP,ErbB1.P--+Gab1.P,ErbB1.P--+SOS.P,ErbB1.P--+ErbB4.P,ErbB1.P--+PIP2,ErbB1.P--+SHC.P,ErbB1.P--+ErbB2.P,ErbB1.P--+PIP3,AKT.P--+AKT.P.P,ErbB4.P--+Ras.GTP,ErbB4.P--+Gab1.P,ErbB4.P--+ErbB1.P,ErbB4.P--+PIP2,ErbB4.P--+SHC.P,ErbB4.P--+ErbB2.P,ErbB4.P--+PIP3,PIP2--+Gab1.P,PIP2--+ErbB4.P,PIP2--+ErbB2.P,PIP2--+PIP3,MEK.P--+MEK.P.P,SHC.P--+ErbB3.P,SHC.P--+Ras.GTP,SHC.P--+SOS.P,SHC.P--+ErbB1.P,SHC.P--+ErbB4.P,SHC.P--+ErbB2.P,RAF.P--+Ras.GTP,RAF.P--+MEK.P.P,RAF.P--+MEK.P,ErbB2.P--+ErbB3.P,ErbB2.P--+Ras.GTP,ErbB2.P--+Gab1.P,ErbB2.P--+ErbB1.P,ErbB2.P--+ErbB4.P,ErbB2.P--+PIP2,ErbB2.P--+SHC.P,ErbB2.P--+PIP3,ERK.P--+ERK.P.P,PIP3--+AKT.P,PIP3--+PIP2,PIP3--+AKT.P.P,AKT.P.P--+AKT.P,AKT.P.P--+RAF.P)
 
 #nodes:
-V(trueGraph)
-length(V(trueGraph))
+V(graph.True)
+length(V(graph.True))
 
 #links:
-E(trueGraph)
-length(E(trueGraph))
+E(graph.True)
+length(E(graph.True))
 
 
 #-----------------------------------------------------------------------------------------------------#
@@ -155,23 +155,88 @@ GetMotifsFromGraph = function(graph.name, motifsize = 4, directed=TRUE, amountRa
 		print("no significant motifs")
 		}else{
 		print(impMotifIndex)
+		
+		# get locations
 		for(i in 1:length(impMotifIndex)){
 			pattern = graph.isocreate(size=motifsize, number=impMotifIndex[i], directed=directed)
 			iso <- subgraph_isomorphisms(pattern, graph)      # takes a while
 			motifsZ <- lapply(iso, function (x) { induced_subgraph(graph, x) })
+			
+
+			for( p in 2:length(motifsZ)){
+				if(!exists("a")){a=motifsZ[[1]]}else{a=new_g}
+
+				b=motifsZ[[p]]
+
+				#V(a)$name <- V(a)$label
+				#V(b)$name <- V(b)$label
+
+				attrs <- rbind(as_data_frame(a, "vertices"), as_data_frame(b, "vertices")) %>% unique()
+				el <- rbind(as_data_frame(a), as_data_frame(b))
+				#@RRR check if this really is one motif
+				new_g <- graph_from_data_frame(el, directed = TRUE, vertices = attrs)
+			}
+			rm(a)
+			rm(b)
+
+			plot(new_g)
+			text(-0.5,-1.2,paste("Assembled network contains ",length(motifsZ)," motifs(",impMotifIndex[i],").",sep=""))
+			title("Complex")
+			
+			plot(simplify(new_g))
+			text(-0.5,-1.2,paste("Assembled network contains ",length(motifsZ)," motifs(",impMotifIndex[i],").",sep=""))
+			title("Simplified")
+			
+			# check below!...
+					
+			if(!exists("endresult")){a=new_g}else{a=endresult}
+
+				b=new_g
+
+				#V(a)$name <- V(a)$label
+				#V(b)$name <- V(b)$label
+
+				attrs <- rbind(as_data_frame(a, "vertices"), as_data_frame(b, "vertices")) %>% unique()
+				el <- rbind(as_data_frame(a), as_data_frame(b))
+
+				endresult <- graph_from_data_frame(el, directed = TRUE, vertices = attrs)
+				plot(simplify(endresult))
+					rm(a)
+					rm(b)
+			
+			
+			
 		}
+			# ...to this!
 	}
 	
 	
 }
 
-# pattern = graph.isocreate(size=motifsize, number=3, directed=directed)
- # iso <- subgraph_isomorphisms(pattern, graph)      # takes a while
- # motifsZ <- lapply(iso, function (x) { induced_subgraph(graph, x) })
+if(F){ # playground
+	# pattern = graph.isocreate(size=motifsize, number=3, directed=directed)
+	 # iso <- subgraph_isomorphisms(pattern, graph)      # takes a while
+	 # motifsZ <- lapply(iso, function (x) { induced_subgraph(graph, x) })
 
-# isomorphic(motifsZ[[1]],motifsZ[[2]])
+	# isomorphic(motifsZ[[1]],motifsZ[[2]])
 
+	for( p in 2:length(motifsZ)){
+		if(!exists("a")){a=motifsZ[[1]]}else{a=new_g}
 
+		b=motifsZ[[p]]
+
+		#V(a)$name <- V(a)$label
+		#V(b)$name <- V(b)$label
+
+		attrs <- rbind(as_data_frame(a, "vertices"), as_data_frame(b, "vertices")) %>% unique()
+		el <- rbind(as_data_frame(a), as_data_frame(b))
+
+		new_g <- graph_from_data_frame(el, directed = TRUE, vertices = attrs)
+	}
+
+	plot(new_g)
+	plot(simplify(new_g))
+}
 
 #-----------------------------------------------------------------------------------------------------#
 #							Bayesian networks
