@@ -73,6 +73,18 @@ setwd(data_dir)
 data <- read.delim("insilico-data.txt", row.names=1)
 set.seed(1) # for reproducibility of results
 
+
+#-----------------------------------------------------------------------------------------------------#
+# 										Make results folder
+#-----------------------------------------------------------------------------------------------------#
+# Make the "Results timestamp" folder
+setwd('..')
+root_dir <- getwd()
+results_dir <- paste(root_dir,"/Results ",gsub(format(Sys.time(), "%x_%H.%M.%S"), pattern = "/",replacement = "-"),sep="")
+dir.create(file.path(results_dir))
+setwd(results_dir)
+
+
 #-----------------------------------------------------------------------------------------------------#
 #							True network definition and analalysis
 #-----------------------------------------------------------------------------------------------------#
@@ -92,11 +104,18 @@ length(E(graph.True))
 #-----------------------------------------------------------------------------------------------------#
 
 # Get motifs fromgraph and plot the motifs with frequency
-GetMotifsFromGraph = function(graph.name, motifsize = 4, directed=TRUE, amountRandomNets = 1000, betaFactor = 1.3){
-# motifsize = 4 # motif size
-# directed = TRUE # directed 
-# amountRandomNets = 1000 # amount of random nets
-# betaFactor = 1.3 # The probability distribution in 'amountRandomNets' networks is risen to the power of beta, to cut on significant motifs
+
+fGetMotifsFromGraph = function(graph.name, motifsize = 3, directed=TRUE, amountRandomNets = 1000, betaFactor = 1.3){
+	# motifsize = 3 # motif size: 3 or 4
+	# directed = TRUE # directed 
+	# amountRandomNets = 1000 # amount of random nets
+	# betaFactor = 1.3 # The probability distribution in 'amountRandomNets' networks is risen to the power of beta, to cut on motifs
+
+	# create folder
+	root_dir <- getwd()
+	results_dir <- paste(root_dir,"/",graph.name,sep="")
+	dir.create(file.path(results_dir))
+	setwd(results_dir)
 
 	graph = get(graph.name)
 	#if(exists("randomNetMotifsTotal")){rm(randomNetMotifsTotal)}
@@ -105,29 +124,32 @@ GetMotifsFromGraph = function(graph.name, motifsize = 4, directed=TRUE, amountRa
 	mygraphmotifs <- graph.motifs(graph, motifsize)
 	# Find which motifs occur:
 
-	for (i in 1:length(mygraphmotifs))
-	{
-			if(is.na(mygraphmotifs[i])){next}
-			
+	for (i in 1:length(mygraphmotifs)){
+		if(is.na(mygraphmotifs[i])){next}
+		
 
-			motif <- mygraphmotifs[i]
-			if (motif > 0) # There are some occurrences of this motif
-			{
-			   # print(i)
-			   # Find out what the motif looks like:
-			   motifgraph <- graph.isocreate(size=motifsize, number=i-1, directed=directed)
-			   edges <- E(motifgraph)
-			   plot(motifgraph)
-			   text(-0.5,-1.2,paste("This motif(",i-1,") occurs ",motif," times:",sep=""))
-			   print(paste("Motif",i-1,"occurs",motif,"times."))
-			   #cat(edges)
-			   
-			}
+		motif <- mygraphmotifs[i]
+		if (motif > 0){ # There are some occurrences of this motif
+		
+			# print(i)
+			# Find out what the motif looks like:
+			motifgraph <- graph.isocreate(size=motifsize, number=i-1, directed=directed)
+			#edges <- E(motifgraph)
+
+			png(file = paste("Motif ", i-1, ".png", sep = ""), 
+				width = 2400, height = 2400, pointsize=25)
+				plot(motifgraph)
+				text(-0.5,-1.2,paste("This motif(",i-1,") occurs ",motif," times:",sep=""))
+			dev.off()
+			
+			print(paste("Motif",i-1,"occurs",motif,"times."))
+			#cat(edges)
+		   
+		}
 	}
 	
 	print(mygraphmotifs)
     mygraphmotifs[is.na(mygraphmotifs)]=0
-
 	
 	# start statistical testing
 	graph = delete.vertices(graph, degree(graph)==0)
@@ -137,7 +159,8 @@ GetMotifsFromGraph = function(graph.name, motifsize = 4, directed=TRUE, amountRa
 	
 	# start random net generation; create distribution
 	for(p in 1:amountRandomNets){
-		g <- barabasi.game(n=length(V(graph)),directed = directed)
+		#g <- sample_pa(n=length(V(graph)),m=round(length(E(graph))/length(V(graph))),directed = directed)
+		g <- random.graph.game(n = length(V(graph)),p.or.m =length(V(graph)),directed = T,type = "gnm")
 		randomNetMotifs = graph.motifs(g, motifsize)
 		randomNetMotifs[is.na(randomNetMotifs)]=0
 		
@@ -147,21 +170,22 @@ GetMotifsFromGraph = function(graph.name, motifsize = 4, directed=TRUE, amountRa
 			randomNetMotifsTotal = randomNetMotifsTotal + randomNetMotifs
 		}
 	}
+	
 	randomNetMotifsTotal = randomNetMotifsTotal/amountRandomNets
-
+	
+	#####################
 	# Which occured more than random:
-	impMotifIndex = which(mygraphmotifs>(randomNetMotifsTotal^betaFactor))-1
+	impMotifIndex = which(mygraphmotifs>(randomNetMotifsTotal^betaFactor))-1 #@RRR include TH morethan 3
 	if(length(impMotifIndex) == 0 ){
 		print("no significant motifs")
 		}else{
 		print(impMotifIndex)
-		
+
 		# get locations
-		for(i in 1:length(impMotifIndex)){
+			for(i in 1:length(impMotifIndex)){
 			pattern = graph.isocreate(size=motifsize, number=impMotifIndex[i], directed=directed)
 			iso <- subgraph_isomorphisms(pattern, graph)      # takes a while
 			motifsZ <- lapply(iso, function (x) { induced_subgraph(graph, x) })
-			
 
 			for( p in 2:length(motifsZ)){
 				if(!exists("a")){a=motifsZ[[1]]}else{a=new_g}
@@ -176,70 +200,65 @@ GetMotifsFromGraph = function(graph.name, motifsize = 4, directed=TRUE, amountRa
 				#@RRR check if this really is one motif
 				new_g <- graph_from_data_frame(el, directed = TRUE, vertices = attrs)
 			}
+
 			rm(a)
 			rm(b)
 
-			plot(new_g)
-			text(-0.5,-1.2,paste("Assembled network contains ",length(motifsZ)," motifs(",impMotifIndex[i],").",sep=""))
-			title("Complex")
-			
-			plot(simplify(new_g))
-			text(-0.5,-1.2,paste("Assembled network contains ",length(motifsZ)," motifs(",impMotifIndex[i],").",sep=""))
-			title("Simplified")
-			
+			png(file = paste("Complex net from motif ", impMotifIndex[i], ".png", sep = ""), 
+				width = 2400, height = 2400, pointsize=25)
+				plot(new_g)
+				text(-0.5,-1.2,paste("Assembled network contains ",length(motifsZ)," motifs(",impMotifIndex[i],").",sep=""))
+				title("Complex")
+			dev.off()
+
+			png(file = paste("Simple net from motif ", impMotifIndex[i], ".png", sep = ""), 
+				width = 2400, height = 2400, pointsize=25)
+				plot(simplify(new_g))
+				text(-0.5,-1.2,paste("Assembled network contains ",length(motifsZ)," motifs(",impMotifIndex[i],").",sep=""))
+				title("Simplified")
+			dev.off()
+
 			# check below!...
-					
+
 			if(!exists("endresult")){a=new_g}else{a=endresult}
 
-				b=new_g
+			b=new_g
 
-				#V(a)$name <- V(a)$label
-				#V(b)$name <- V(b)$label
+			#V(a)$name <- V(a)$label
+			#V(b)$name <- V(b)$label
 
-				attrs <- rbind(as_data_frame(a, "vertices"), as_data_frame(b, "vertices")) %>% unique()
-				el <- rbind(as_data_frame(a), as_data_frame(b))
+			attrs <- rbind(as_data_frame(a, "vertices"), as_data_frame(b, "vertices")) %>% unique()
+			el <- rbind(as_data_frame(a), as_data_frame(b))
 
-				endresult <- graph_from_data_frame(el, directed = TRUE, vertices = attrs)
-				plot(simplify(endresult))
-					rm(a)
-					rm(b)
-			
-			
-			
+			endresult <- graph_from_data_frame(el, directed = TRUE, vertices = attrs)
+
+			rm(a)
+			rm(b)
 		}
-			# ...to this!
+
+		png(file = paste("Endresult complex net.png", sep = ""), 
+			width = 2400, height = 2400, pointsize=25)
+			plot((endresult))
+			#text(-0.5,-1.2,paste("Assembled network contains ",length(motifsZ)," motifs(",impMotifIndex[i],").",sep=""))
+			#title("Simplified")
+		dev.off()
+
+		png(file = paste("Endresult simple net.png", sep = ""), 
+			width = 2400, height = 2400, pointsize=25)
+			plot(simplify(endresult))
+			#text(-0.5,-1.2,paste("Assembled network contains ",length(motifsZ)," motifs(",impMotifIndex[i],").",sep=""))
+			#title("Simplified")
+		dev.off()				
+
+
+		# ...to this!
 	}
 	
-	
-}
-
-if(F){ # playground
-	# pattern = graph.isocreate(size=motifsize, number=3, directed=directed)
-	 # iso <- subgraph_isomorphisms(pattern, graph)      # takes a while
-	 # motifsZ <- lapply(iso, function (x) { induced_subgraph(graph, x) })
-
-	# isomorphic(motifsZ[[1]],motifsZ[[2]])
-
-	for( p in 2:length(motifsZ)){
-		if(!exists("a")){a=motifsZ[[1]]}else{a=new_g}
-
-		b=motifsZ[[p]]
-
-		#V(a)$name <- V(a)$label
-		#V(b)$name <- V(b)$label
-
-		attrs <- rbind(as_data_frame(a, "vertices"), as_data_frame(b, "vertices")) %>% unique()
-		el <- rbind(as_data_frame(a), as_data_frame(b))
-
-		new_g <- graph_from_data_frame(el, directed = TRUE, vertices = attrs)
-	}
-
-	plot(new_g)
-	plot(simplify(new_g))
+	setwd('..')	
 }
 
 #-----------------------------------------------------------------------------------------------------#
-#							Bayesian networks
+#							Bayesian networks (GRENITS) 
 #-----------------------------------------------------------------------------------------------------#
 # directed
 # 20N 16L
@@ -264,7 +283,7 @@ length(V(graph.Bayes))
 #links: 16
 E(graph.Bayes)
 length(E(graph.Bayes))
-GetMotifsFromGraph("graph.Bayes")
+fGetMotifsFromGraph("graph.Bayes")
 #createNetworkFromIgraph(graph.Bayes, title="GRENITS",collection="Bayesian")
 #copyVisualStyle("default","GRENITS")
 #setVisualStyle("GRENITS")
@@ -272,9 +291,9 @@ GetMotifsFromGraph("graph.Bayes")
 
 
 #-----------------------------------------------------------------------------------------------------#
-#							Correlation
+#							Correlation (corr) 
 #-----------------------------------------------------------------------------------------------------#
-#undirected ->directed..?
+#undirected
 # 20N 72L
 res.cor <- correlate(t(data), diagonal = 0)
 row.names(res.cor) <- res.cor$rowname
@@ -292,12 +311,12 @@ length(V(graph.Cor))
 #links: 72
 E(graph.Cor)
 length(E(graph.Cor))
-GetMotifsFromGraph("graph.Cor")
+fGetMotifsFromGraph("graph.Cor")
 #createNetworkFromIgraph(graph.Cor,title="Correlation_Network",collection="Correlation")
 
 
 #-----------------------------------------------------------------------------------------------------#
-#							Regression
+#							Regression (Ensemble of trees)
 #-----------------------------------------------------------------------------------------------------#
 # undirected ->directed..?
 # 20N 40L
@@ -317,7 +336,7 @@ length(V(graph.Reg))
 #links: 40
 E(graph.Reg)
 length(E(graph.Reg))
-GetMotifsFromGraph("graph.Reg")
+fGetMotifsFromGraph("graph.Reg")
 
 #createNetworkFromIgraph(graph.Reg, title="GENIE3_Network",collection="GENIE3")
 #copyVisualStyle("default","GENIE3")
@@ -328,6 +347,9 @@ GetMotifsFromGraph("graph.Reg")
 #-----------------------------------------------------------------------------------------------------#
 #							Mutual information
 #-----------------------------------------------------------------------------------------------------#
+#directed
+
+
 mi <- knnmi.all(data)
 grn1 <- aracne.a(mi)
 grn2 <- aracne.m(mi)
@@ -384,7 +406,7 @@ length(V(graph.MU2))
 #links: 82
 E(graph.MU2)
 length(E(graph.MU2))
-GetMotifsFromGraph("graph.MU2")
+fGetMotifsFromGraph("graph.MU2")
 #createNetworkFromIgraph(graph.MU2, title="ARACNE.M_Network",collection="MI")
 #setVisualStyle("default")
 
