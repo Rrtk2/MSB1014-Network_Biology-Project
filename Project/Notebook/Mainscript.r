@@ -45,7 +45,7 @@ for (i in requiredpackages) {
 #		Block 02a		GENERAL Settings
 #-----------------------------------------------------------------------------------------------------#
 options(stringsAsFactors 	= F)
-motifsize 					= 4
+motifsize 					= 3
 
 #-----------------------------------------------------------------------------------------------------#
 #		Block 02b		INPUT Settings
@@ -88,7 +88,17 @@ setwd(results_dir)
 #-----------------------------------------------------------------------------------------------------#
 #							True network definition and analalysis
 #-----------------------------------------------------------------------------------------------------#
-graph.True = graph_from_literal(ErbB3.P--+Ras.GTP,ErbB3.P--+Gab1.P,ErbB3.P--+ErbB1.P,ErbB3.P--+PIP2,ErbB3.P--+SHC.P,ErbB3.P--+ErbB2.P,ErbB3.P--+PIP3,ERK.P.P--+ErbB3.P,ERK.P.P--+Gab1.P,ERK.P.P--+SOS.P,ERK.P.P--+ErbB1.P,ERK.P.P--+ErbB2.P,ERK.P.P--+ERK.P,Ras.GTP--+ErbB3.P,Ras.GTP--+ErbB1.P,Ras.GTP--+ErbB4.P,Ras.GTP--+SHC.P,Ras.GTP--+RAF.P,Ras.GTP--+ErbB2.P,MEK.P.P--+ERK.P.P,MEK.P.P--+MEK.P,MEK.P.P--+ERK.P,Gab1.P--+ErbB3.P,Gab1.P--+Ras.GTP,Gab1.P--+ErbB1.P,Gab1.P--+ErbB4.P,Gab1.P--+PIP2,Gab1.P--+ErbB2.P,Gab1.P--+PIP3,ErbB1.P--+ErbB3.P,ErbB1.P--+Ras.GTP,ErbB1.P--+Gab1.P,ErbB1.P--+SOS.P,ErbB1.P--+ErbB4.P,ErbB1.P--+PIP2,ErbB1.P--+SHC.P,ErbB1.P--+ErbB2.P,ErbB1.P--+PIP3,AKT.P--+AKT.P.P,ErbB4.P--+Ras.GTP,ErbB4.P--+Gab1.P,ErbB4.P--+ErbB1.P,ErbB4.P--+PIP2,ErbB4.P--+SHC.P,ErbB4.P--+ErbB2.P,ErbB4.P--+PIP3,PIP2--+Gab1.P,PIP2--+ErbB4.P,PIP2--+ErbB2.P,PIP2--+PIP3,MEK.P--+MEK.P.P,SHC.P--+ErbB3.P,SHC.P--+Ras.GTP,SHC.P--+SOS.P,SHC.P--+ErbB1.P,SHC.P--+ErbB4.P,SHC.P--+ErbB2.P,RAF.P--+Ras.GTP,RAF.P--+MEK.P.P,RAF.P--+MEK.P,ErbB2.P--+ErbB3.P,ErbB2.P--+Ras.GTP,ErbB2.P--+Gab1.P,ErbB2.P--+ErbB1.P,ErbB2.P--+ErbB4.P,ErbB2.P--+PIP2,ErbB2.P--+SHC.P,ErbB2.P--+PIP3,ERK.P--+ERK.P.P,PIP3--+AKT.P,PIP3--+PIP2,PIP3--+AKT.P.P,AKT.P.P--+AKT.P,AKT.P.P--+RAF.P)
+graph.True = graph_from_literal(ErbB3.P--+Ras.GTP,ErbB3.P--+Gab1.P,ErbB3.P--+ErbB1.P,ErbB3.P--+PIP2,ErbB3.P--+SHC.P,
+ErbB3.P--+ErbB2.P,ErbB3.P--+PIP3,ERK.P.P--+ErbB3.P,ERK.P.P--+Gab1.P,ERK.P.P--+SOS.P,ERK.P.P--+ErbB1.P,ERK.P.P--+ErbB2.P,
+ERK.P.P--+ERK.P,Ras.GTP--+ErbB3.P,Ras.GTP--+ErbB1.P,Ras.GTP--+ErbB4.P,Ras.GTP--+SHC.P,Ras.GTP--+RAF.P,Ras.GTP--+ErbB2.P,
+MEK.P.P--+ERK.P.P,MEK.P.P--+MEK.P,MEK.P.P--+ERK.P,Gab1.P--+ErbB3.P,Gab1.P--+Ras.GTP,Gab1.P--+ErbB1.P,Gab1.P--+ErbB4.P,
+Gab1.P--+PIP2,Gab1.P--+ErbB2.P,Gab1.P--+PIP3,ErbB1.P--+ErbB3.P,ErbB1.P--+Ras.GTP,ErbB1.P--+Gab1.P,ErbB1.P--+SOS.P,
+ErbB1.P--+ErbB4.P,ErbB1.P--+PIP2,ErbB1.P--+SHC.P,ErbB1.P--+ErbB2.P,ErbB1.P--+PIP3,AKT.P--+AKT.P.P,ErbB4.P--+Ras.GTP,
+ErbB4.P--+Gab1.P,ErbB4.P--+ErbB1.P,ErbB4.P--+PIP2,ErbB4.P--+SHC.P,ErbB4.P--+ErbB2.P,ErbB4.P--+PIP3,PIP2--+Gab1.P,
+PIP2--+ErbB4.P,PIP2--+ErbB2.P,PIP2--+PIP3,MEK.P--+MEK.P.P,SHC.P--+ErbB3.P,SHC.P--+Ras.GTP,SHC.P--+SOS.P,SHC.P--+ErbB1.P,
+SHC.P--+ErbB4.P,SHC.P--+ErbB2.P,RAF.P--+Ras.GTP,RAF.P--+MEK.P.P,RAF.P--+MEK.P,ErbB2.P--+ErbB3.P,ErbB2.P--+Ras.GTP,
+ErbB2.P--+Gab1.P,ErbB2.P--+ErbB1.P,ErbB2.P--+ErbB4.P,ErbB2.P--+PIP2,ErbB2.P--+SHC.P,ErbB2.P--+PIP3,ERK.P--+ERK.P.P,
+PIP3--+AKT.P,PIP3--+PIP2,PIP3--+AKT.P.P,AKT.P.P--+AKT.P,AKT.P.P--+RAF.P,unconnected=dummy1,dummy2,dummy3)
 
 #nodes:
 V(graph.True)
@@ -105,12 +115,14 @@ length(E(graph.True))
 
 # Get motifs fromgraph and plot the motifs with frequency
 
-fGetMotifsFromGraph = function(graph.name, motifsize = 3, directed=TRUE, amountRandomNets = 1000, betaFactor = 1.3){
+fGetMotifsFromGraph = function(graph.name, motifsize = 3, directed=TRUE, amountRandomNets = 1000, betaFactor = 1.3, HardTH = 3,runCytoscape=FALSE){
 	# motifsize = 3 # motif size: 3 or 4
 	# directed = TRUE # directed 
 	# amountRandomNets = 1000 # amount of random nets
 	# betaFactor = 1.3 # The probability distribution in 'amountRandomNets' networks is risen to the power of beta, to cut on motifs
-
+	# HardTH = 3 # minimum amount of ocurrences
+	# runCytoscape = T/F # True for network generation in cytoscape
+	
 	# create folder
 	root_dir <- getwd()
 	results_dir <- paste(root_dir,"/",graph.name,sep="")
@@ -118,8 +130,9 @@ fGetMotifsFromGraph = function(graph.name, motifsize = 3, directed=TRUE, amountR
 	setwd(results_dir)
 
 	graph = get(graph.name)
+	graphInfer = graph # used later
 	#if(exists("randomNetMotifsTotal")){rm(randomNetMotifsTotal)}
-	
+	#if(exists("endresult")){rm("endresult")}
 	# Find network motifs in the graph "graph":
 	mygraphmotifs <- graph.motifs(graph, motifsize)
 	# Find which motifs occur:
@@ -137,7 +150,7 @@ fGetMotifsFromGraph = function(graph.name, motifsize = 3, directed=TRUE, amountR
 			#edges <- E(motifgraph)
 
 			png(file = paste("Motif ", i-1, ".png", sep = ""), 
-				width = 2400, height = 2400, pointsize=25)
+				width = 2400/2, height = 2400/2, pointsize=25)
 				plot(motifgraph)
 				text(-0.5,-1.2,paste("This motif(",i-1,") occurs ",motif," times:",sep=""))
 			dev.off()
@@ -175,7 +188,7 @@ fGetMotifsFromGraph = function(graph.name, motifsize = 3, directed=TRUE, amountR
 	
 	#####################
 	# Which occured more than random:
-	impMotifIndex = which(mygraphmotifs>(randomNetMotifsTotal^betaFactor))-1 #@RRR include TH morethan 3
+	impMotifIndex = which(mygraphmotifs>(randomNetMotifsTotal^betaFactor)&mygraphmotifs>HardTH)-1 #@RRR include TH morethan 3
 	if(length(impMotifIndex) == 0 ){
 		print("no significant motifs")
 		}else{
@@ -205,14 +218,14 @@ fGetMotifsFromGraph = function(graph.name, motifsize = 3, directed=TRUE, amountR
 			rm(b)
 
 			png(file = paste("Complex net from motif ", impMotifIndex[i], ".png", sep = ""), 
-				width = 2400, height = 2400, pointsize=25)
+				width = 2400/2, height = 2400/2, pointsize=25)
 				plot(new_g)
 				text(-0.5,-1.2,paste("Assembled network contains ",length(motifsZ)," motifs(",impMotifIndex[i],").",sep=""))
 				title("Complex")
 			dev.off()
 
 			png(file = paste("Simple net from motif ", impMotifIndex[i], ".png", sep = ""), 
-				width = 2400, height = 2400, pointsize=25)
+				width = 2400/2, height = 2400/2, pointsize=25)
 				plot(simplify(new_g))
 				text(-0.5,-1.2,paste("Assembled network contains ",length(motifsZ)," motifs(",impMotifIndex[i],").",sep=""))
 				title("Simplified")
@@ -250,12 +263,51 @@ fGetMotifsFromGraph = function(graph.name, motifsize = 3, directed=TRUE, amountR
 			#title("Simplified")
 		dev.off()				
 
-
+		
+		# calculate difference and check the overlap
+		
+		## NO motif filter
+		# missed this amount of edges:
+		NoE = E(graphInfer)%in%E(graph.True)
+		print(paste(sum(NoE),"/",length(NoE)," of total ",length(E(graph.True))," edges correct (inferred net)",sep=""))
+		
+		# missed this amount of nodes:
+		NoN = V(graphInfer)%in%V(graph.True)
+		print(paste(sum(NoN),"/",length(NoN)," of total ",length(V(graph.True))," nodes correct (inferred net)",sep=""))
+		
+		## motif filter
+		# missed this amount of edges:
+		YesE = E(simplify(endresult))%in%E(graph.True)
+		print(paste(sum(YesE),"/",length(YesE)," of total ",length(E(graph.True))," edges correct (motif filter)",sep=""))
+		
+		# missed this amount of nodes:
+		YesN = V(simplify(endresult))%in%V(graph.True)
+		print(paste(sum(YesN),"/",length(YesN)," of total ",length(V(graph.True))," nodes correct (motif filter)",sep=""))
 		# ...to this!
+		
+		# Cytoscape!
+		if(runCytoscape==T){
+			createNetworkFromIgraph(graphInfer, title="Inferred_network",collection=graph.name)
+			copyVisualStyle("default","MyStyle01")
+			setVisualStyle("MyStyle01")
+			setEdgeTargetArrowShapeDefault("Arrow", style.name = "MyStyle01")
+			layoutNetwork(layout.name = "cose")
+
+			createNetworkFromIgraph(simplify(endresult), title="Inferred_Motif_network",collection=graph.name)
+			setVisualStyle("MyStyle01")
+			layoutNetwork(layout.name = "cose")
+			
+			createNetworkFromIgraph(graph.True, title="True_network",collection=graph.name)
+			setVisualStyle("MyStyle01")
+			layoutNetwork(layout.name = "cose")
+		}
+		
+		rm(endresult)
 	}
 	
 	setwd('..')	
 }
+
 
 #-----------------------------------------------------------------------------------------------------#
 #							Bayesian networks (GRENITS) 
@@ -283,7 +335,7 @@ length(V(graph.Bayes))
 #links: 16
 E(graph.Bayes)
 length(E(graph.Bayes))
-fGetMotifsFromGraph("graph.Bayes")
+fGetMotifsFromGraph("graph.Bayes",motifsize)
 #createNetworkFromIgraph(graph.Bayes, title="GRENITS",collection="Bayesian")
 #copyVisualStyle("default","GRENITS")
 #setVisualStyle("GRENITS")
@@ -295,25 +347,29 @@ fGetMotifsFromGraph("graph.Bayes")
 #-----------------------------------------------------------------------------------------------------#
 #undirected
 # 20N 72L
-res.cor <- correlate(t(data), diagonal = 0)
-row.names(res.cor) <- res.cor$rowname
-res.cor[1] <- NULL
 
-res.cor.filtered <- res.cor
-res.cor.filtered[res.cor.filtered < 0.3] <- 0
+# BLOCKED ...
+if(F){
+	res.cor <- correlate(t(data), diagonal = 0)
+	row.names(res.cor) <- res.cor$rowname
+	res.cor[1] <- NULL
 
-graph.Cor <- igraph::graph_from_adjacency_matrix(as.matrix(res.cor.filtered), weighted=TRUE)
-plot(graph.Cor)
-#nodes: 20
-V(graph.Cor)
-length(V(graph.Cor))
+	res.cor.filtered <- res.cor
+	res.cor.filtered[res.cor.filtered < 0.3] <- 0
 
-#links: 72
-E(graph.Cor)
-length(E(graph.Cor))
-fGetMotifsFromGraph("graph.Cor")
-#createNetworkFromIgraph(graph.Cor,title="Correlation_Network",collection="Correlation")
+	graph.Cor <- igraph::graph_from_adjacency_matrix(as.matrix(res.cor.filtered), weighted=TRUE)
+	plot(graph.Cor)
+	#nodes: 20
+	V(graph.Cor)
+	length(V(graph.Cor))
 
+	#links: 72
+	E(graph.Cor)
+	length(E(graph.Cor))
+	fGetMotifsFromGraph("graph.Cor",motifsize)
+	#createNetworkFromIgraph(graph.Cor,title="Correlation_Network",collection="Correlation")
+}
+# ... BLOCKED
 
 #-----------------------------------------------------------------------------------------------------#
 #							Regression (Ensemble of trees)
@@ -336,7 +392,7 @@ length(V(graph.Reg))
 #links: 40
 E(graph.Reg)
 length(E(graph.Reg))
-fGetMotifsFromGraph("graph.Reg")
+fGetMotifsFromGraph("graph.Reg",motifsize)
 
 #createNetworkFromIgraph(graph.Reg, title="GENIE3_Network",collection="GENIE3")
 #copyVisualStyle("default","GENIE3")
@@ -406,142 +462,10 @@ length(V(graph.MU2))
 #links: 82
 E(graph.MU2)
 length(E(graph.MU2))
-fGetMotifsFromGraph("graph.MU2")
+fGetMotifsFromGraph("graph.MU2",motifsize)
 #createNetworkFromIgraph(graph.MU2, title="ARACNE.M_Network",collection="MI")
 #setVisualStyle("default")
 
 
-#-----------------------------------------------------------------------------------------------------#
-#							motif
-#-----------------------------------------------------------------------------------------------------#
- motifsize = 4
- g <- barabasi.game(n=15,directed = T)
- #erdos.renyi.game # randomn
-plot(g)
-motifs(g, motifsize)
-which(motifs(g, motifsize)>=1)
 
 
-# create the motif MINUS ONE BECAUSE THESE FACKERS START AT 0; THIS IS R NOT FUCKING C++
-#plot(graph.isocreate(size=3, number=3-1,directed = T))
-
-graph = graph.Cor
-
-# Find network motifs in the graph "graph":
-	mygraphmotifs <- graph.motifs(graph, motifsize)
-	# Find which motifs occur:
-
-	for (i in 1:length(mygraphmotifs))
-	{
-			if(is.na(mygraphmotifs[i])){next}
-			
-
-			motif <- mygraphmotifs[i]
-			if (motif > 0) # There are some occurrences of this motif
-			{
-			   print(i)
-			   # Find out what the motif looks like:
-			   motifgraph <- graph.isocreate(size=motifsize, number=i-1, directed=TRUE)
-			   edges <- E(motifgraph)
-			   plot(motifgraph)
-			   text(-1,-1,paste("This motif occurs",motif,"times."))
-			   print(paste("This motif occurs",motif,"times:"))
-			   print(edges)
-			}
-	}
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#-----------------------------------------------------------------------------------------------------#
-#							Ensembl
-#-----------------------------------------------------------------------------------------------------#
-ensembl= data.frame(matrix(0,20,20))
-
-#selectedlist = c("graph.Bayes","graph.Cor","graph.Reg")
-selectedlist = ls()[grep(pattern = "graph",x = ls())]
-
-SelectedlistLength = length(selectedlist)
-#for( i  in 1:length(ls()[grep(pattern = "graph",x = ls())])){
-
-for( i  in 1:SelectedlistLength){
-
-
-a=get(selectedlist[i])[]
-ensembl = ensembl + as.matrix(a)
-}
-ensembl= as.data.frame(ensembl)
-
-rownames(ensembl) = rownames(a)
-colnames(ensembl) = colnames(a)
-
-
-
-ensembl_edit = ensembl
-
-ensembl_edit = (ensembl_edit-min(ensembl_edit))/(max(ensembl_edit)-min(ensembl_edit))
-
-#ensembl_edit2 = sign(ensembl_edit) * abs(ensembl_edit)^(1/3)
-
-ensembl_edit[is.na(ensembl_edit)] = 0
-hist(quantile(unlist(as.matrix(ensembl_edit[])),probs=(1:100)/100),breaks=100)
-
-
-cutoff = 0.2
-
-ensembl_edit[ensembl_edit<cutoff] = 0
-ensembl_edit[ensembl_edit>cutoff] = 1
-graphR.Ensembl = graph_from_adjacency_matrix(adjmatrix = as.matrix(ensembl_edit), mode ="directed",diag = T)
-sum(graphR.Ensembl[])
-
-
-
-plot(graphR.Ensembl)
-
-createNetworkFromIgraph(graphR.Ensembl, title="graphR.Ensembl",collection="Ensembl")
-copyVisualStyle("default","graphR.Ensembl")
-setVisualStyle("graphR.Ensembl")
-setEdgeTargetArrowShapeDefault("Arrow", style.name = "graphR.Ensembl")
-
-# predicted 12 correct from 30
