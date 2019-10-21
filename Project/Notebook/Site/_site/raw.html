@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Raw code</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">MSB1015 - Scientific Programming - Assignment 2</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="version.html">Used packages</a>
+</li>
+<li>
+  <a href="raw.html">Code</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Raw code</h1>
+
+</div>
+
+
+<pre><code>#-----------------------------------------------------------------------------------------------------#
+#       Block 00        GENERAL INFORMATION
+#-----------------------------------------------------------------------------------------------------#
+
+# Copyright statement comment:
+#   All rights reserved.
+#
+# Author comment:
+#   Rick Reijnders
+#   Script version: 21-10-2019
+
+# File description:
+#   Name
+#     Mainscript.R
+#
+  
+rm(list=ls()) # clean workspace
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Block 01        (Install &amp;) Load packages
+#-----------------------------------------------------------------------------------------------------#
+# Install packages if needed and load, or just load packages
+if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE))
+  install.packages(&quot;BiocManager&quot;, ask = F)
+
+# Insert all packages in requiredpackages
+requiredpackages &lt;-
+  c(&quot;GRENITS&quot;,
+    &quot;igraph&quot;,
+    &quot;corrr&quot;,
+    &quot;GENIE3&quot;,
+    &quot;parmigene&quot;,
+    &quot;RCy3&quot;)
+    
+for (i in requiredpackages) {
+    if (!requireNamespace(i, quietly = TRUE))
+        BiocManager::install(i, ask = F, dependencies = TRUE)
+    require(as.character(i), character.only = TRUE)
+    print(i)
+}
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Block 02a       GENERAL Settings
+#-----------------------------------------------------------------------------------------------------#
+options(stringsAsFactors    = F)
+motifsize                   = 3
+
+#-----------------------------------------------------------------------------------------------------#
+#       Block 02b       INPUT Settings
+#-----------------------------------------------------------------------------------------------------#
+DataFolderLocation      = &quot;/Github/MSB1014-Network_Biology-Project/Project/Notebook/&quot;   # Must be in format &quot;/location...DatalocationFolder/&quot;
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Block 03        Prepare folders and load data
+#-----------------------------------------------------------------------------------------------------#
+# Data_dir should contain the data file!
+if(Sys.info()[6]==&quot;RR&quot;){
+    data_dir &lt;- paste(&quot;D:&quot;,DataFolderLocation,sep=&quot;&quot;)  # Rick&#39;s link (laptop)
+}else if(Sys.info()[6]==&quot;Admin&quot;){
+    data_dir &lt;- paste(&quot;D:/Games&quot;,DataFolderLocation,sep=&quot;&quot;)  # Rick&#39;s other link (desktop)
+}
+
+# Get folder and move to one level above, then make new folder containing timestamp
+setwd(data_dir)
+
+
+#-----------------------------------------------------------------------------------------------------#
+#                           Load data
+#-----------------------------------------------------------------------------------------------------#
+data &lt;- read.delim(&quot;insilico-data.txt&quot;, row.names=1)
+set.seed(1) # for reproducibility of results
+
+
+#-----------------------------------------------------------------------------------------------------#
+#                                       Make results folder
+#-----------------------------------------------------------------------------------------------------#
+# Make the &quot;Results timestamp&quot; folder
+setwd(&#39;..&#39;)
+root_dir &lt;- getwd()
+results_dir &lt;- paste(root_dir,&quot;/Results &quot;,gsub(format(Sys.time(), &quot;%x_%H.%M.%S&quot;), pattern = &quot;/&quot;,replacement = &quot;-&quot;),sep=&quot;&quot;)
+dir.create(file.path(results_dir))
+setwd(results_dir)
+
+
+#-----------------------------------------------------------------------------------------------------#
+#                           True network definition and analalysis
+#-----------------------------------------------------------------------------------------------------#
+graph.True = graph_from_literal(ErbB3.P--+Ras.GTP,ErbB3.P--+Gab1.P,ErbB3.P--+ErbB1.P,ErbB3.P--+PIP2,ErbB3.P--+SHC.P,
+ErbB3.P--+ErbB2.P,ErbB3.P--+PIP3,ERK.P.P--+ErbB3.P,ERK.P.P--+Gab1.P,ERK.P.P--+SOS.P,ERK.P.P--+ErbB1.P,ERK.P.P--+ErbB2.P,
+ERK.P.P--+ERK.P,Ras.GTP--+ErbB3.P,Ras.GTP--+ErbB1.P,Ras.GTP--+ErbB4.P,Ras.GTP--+SHC.P,Ras.GTP--+RAF.P,Ras.GTP--+ErbB2.P,
+MEK.P.P--+ERK.P.P,MEK.P.P--+MEK.P,MEK.P.P--+ERK.P,Gab1.P--+ErbB3.P,Gab1.P--+Ras.GTP,Gab1.P--+ErbB1.P,Gab1.P--+ErbB4.P,
+Gab1.P--+PIP2,Gab1.P--+ErbB2.P,Gab1.P--+PIP3,ErbB1.P--+ErbB3.P,ErbB1.P--+Ras.GTP,ErbB1.P--+Gab1.P,ErbB1.P--+SOS.P,
+ErbB1.P--+ErbB4.P,ErbB1.P--+PIP2,ErbB1.P--+SHC.P,ErbB1.P--+ErbB2.P,ErbB1.P--+PIP3,AKT.P--+AKT.P.P,ErbB4.P--+Ras.GTP,
+ErbB4.P--+Gab1.P,ErbB4.P--+ErbB1.P,ErbB4.P--+PIP2,ErbB4.P--+SHC.P,ErbB4.P--+ErbB2.P,ErbB4.P--+PIP3,PIP2--+Gab1.P,
+PIP2--+ErbB4.P,PIP2--+ErbB2.P,PIP2--+PIP3,MEK.P--+MEK.P.P,SHC.P--+ErbB3.P,SHC.P--+Ras.GTP,SHC.P--+SOS.P,SHC.P--+ErbB1.P,
+SHC.P--+ErbB4.P,SHC.P--+ErbB2.P,RAF.P--+Ras.GTP,RAF.P--+MEK.P.P,RAF.P--+MEK.P,ErbB2.P--+ErbB3.P,ErbB2.P--+Ras.GTP,
+ErbB2.P--+Gab1.P,ErbB2.P--+ErbB1.P,ErbB2.P--+ErbB4.P,ErbB2.P--+PIP2,ErbB2.P--+SHC.P,ErbB2.P--+PIP3,ERK.P--+ERK.P.P,
+PIP3--+AKT.P,PIP3--+PIP2,PIP3--+AKT.P.P,AKT.P.P--+AKT.P,AKT.P.P--+RAF.P,unconnected=dummy1,dummy2,dummy3)
+
+#nodes:
+V(graph.True)
+length(V(graph.True))
+
+#links:
+E(graph.True)
+length(E(graph.True))
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 3: FUNCTIONS
+#-----------------------------------------------------------------------------------------------------#
+
+# Get motifs fromgraph and plot the motifs with frequency
+
+fGetMotifsFromGraph = function(graph.name, motifsize = 3, directed=TRUE, amountRandomNets = 1000, betaFactor = 1.3, HardTH = 3,runCytoscape=FALSE){
+    # motifsize = 3 # motif size: 3 or 4
+    # directed = TRUE # directed 
+    # amountRandomNets = 1000 # amount of random nets
+    # betaFactor = 1.3 # The probability distribution in &#39;amountRandomNets&#39; networks is risen to the power of beta, to cut on motifs
+    # HardTH = 3 # minimum amount of ocurrences
+    # runCytoscape = T/F # True for network generation in cytoscape
+    
+    # create folder
+    root_dir &lt;- getwd()
+    results_dir &lt;- paste(root_dir,&quot;/&quot;,graph.name,sep=&quot;&quot;)
+    dir.create(file.path(results_dir))
+    setwd(results_dir)
+
+    graph = get(graph.name)
+    graphInfer = graph # used later
+    #if(exists(&quot;randomNetMotifsTotal&quot;)){rm(randomNetMotifsTotal)}
+    #if(exists(&quot;endresult&quot;)){rm(&quot;endresult&quot;)}
+    # Find network motifs in the graph &quot;graph&quot;:
+    mygraphmotifs &lt;- graph.motifs(graph, motifsize)
+    # Find which motifs occur:
+
+    for (i in 1:length(mygraphmotifs)){
+        if(is.na(mygraphmotifs[i])){next}
+        
+
+        motif &lt;- mygraphmotifs[i]
+        if (motif &gt; 0){ # There are some occurrences of this motif
+        
+            # print(i)
+            # Find out what the motif looks like:
+            motifgraph &lt;- graph.isocreate(size=motifsize, number=i-1, directed=directed)
+            #edges &lt;- E(motifgraph)
+
+            png(file = paste(&quot;Motif &quot;, i-1, &quot;.png&quot;, sep = &quot;&quot;), 
+                width = 2400/2, height = 2400/2, pointsize=25)
+                plot(motifgraph)
+                text(-0.5,-1.2,paste(&quot;This motif(&quot;,i-1,&quot;) occurs &quot;,motif,&quot; times:&quot;,sep=&quot;&quot;))
+            dev.off()
+            
+            print(paste(&quot;Motif&quot;,i-1,&quot;occurs&quot;,motif,&quot;times.&quot;))
+            #cat(edges)
+           
+        }
+    }
+    
+    print(mygraphmotifs)
+    mygraphmotifs[is.na(mygraphmotifs)]=0
+    
+    # start statistical testing
+    graph = delete.vertices(graph, degree(graph)==0)
+    
+    meanInDegree = mean(degree(graph,mode = &quot;in&quot;))
+    meanOutDegree = mean(degree(graph,mode = &quot;out&quot;))
+    
+    # start random net generation; create distribution
+    for(p in 1:amountRandomNets){
+        #g &lt;- sample_pa(n=length(V(graph)),m=round(length(E(graph))/length(V(graph))),directed = directed)
+        g &lt;- random.graph.game(n = length(V(graph)),p.or.m =length(V(graph)),directed = T,type = &quot;gnm&quot;)
+        randomNetMotifs = graph.motifs(g, motifsize)
+        randomNetMotifs[is.na(randomNetMotifs)]=0
+        
+        if(!exists(&quot;randomNetMotifsTotal&quot;)){
+            randomNetMotifsTotal = randomNetMotifs
+            }else{
+            randomNetMotifsTotal = randomNetMotifsTotal + randomNetMotifs
+        }
+    }
+    
+    randomNetMotifsTotal = randomNetMotifsTotal/amountRandomNets
+    
+    #####################
+    # Which occured more than random:
+    impMotifIndex = which(mygraphmotifs&gt;(randomNetMotifsTotal^betaFactor)&amp;mygraphmotifs&gt;HardTH)-1 #@RRR include TH morethan 3
+    if(length(impMotifIndex) == 0 ){
+        print(&quot;no significant motifs&quot;)
+        }else{
+        print(impMotifIndex)
+
+        # get locations
+            for(i in 1:length(impMotifIndex)){
+            pattern = graph.isocreate(size=motifsize, number=impMotifIndex[i], directed=directed)
+            iso &lt;- subgraph_isomorphisms(pattern, graph)      # takes a while
+            motifsZ &lt;- lapply(iso, function (x) { induced_subgraph(graph, x) })
+
+            for( p in 2:length(motifsZ)){
+                if(!exists(&quot;a&quot;)){a=motifsZ[[1]]}else{a=new_g}
+
+                b=motifsZ[[p]]
+
+                #V(a)$name &lt;- V(a)$label
+                #V(b)$name &lt;- V(b)$label
+
+                attrs &lt;- rbind(as_data_frame(a, &quot;vertices&quot;), as_data_frame(b, &quot;vertices&quot;)) %&gt;% unique()
+                el &lt;- rbind(as_data_frame(a), as_data_frame(b))
+                #@RRR check if this really is one motif
+                new_g &lt;- graph_from_data_frame(el, directed = TRUE, vertices = attrs)
+            }
+
+            rm(a)
+            rm(b)
+
+            png(file = paste(&quot;Complex net from motif &quot;, impMotifIndex[i], &quot;.png&quot;, sep = &quot;&quot;), 
+                width = 2400/2, height = 2400/2, pointsize=25)
+                plot(new_g)
+                text(-0.5,-1.2,paste(&quot;Assembled network contains &quot;,length(motifsZ),&quot; motifs(&quot;,impMotifIndex[i],&quot;).&quot;,sep=&quot;&quot;))
+                title(&quot;Complex&quot;)
+            dev.off()
+
+            png(file = paste(&quot;Simple net from motif &quot;, impMotifIndex[i], &quot;.png&quot;, sep = &quot;&quot;), 
+                width = 2400/2, height = 2400/2, pointsize=25)
+                plot(simplify(new_g))
+                text(-0.5,-1.2,paste(&quot;Assembled network contains &quot;,length(motifsZ),&quot; motifs(&quot;,impMotifIndex[i],&quot;).&quot;,sep=&quot;&quot;))
+                title(&quot;Simplified&quot;)
+            dev.off()
+
+            # check below!...
+
+            if(!exists(&quot;endresult&quot;)){a=new_g}else{a=endresult}
+
+            b=new_g
+
+            #V(a)$name &lt;- V(a)$label
+            #V(b)$name &lt;- V(b)$label
+
+            attrs &lt;- rbind(as_data_frame(a, &quot;vertices&quot;), as_data_frame(b, &quot;vertices&quot;)) %&gt;% unique()
+            el &lt;- rbind(as_data_frame(a), as_data_frame(b))
+
+            endresult &lt;- graph_from_data_frame(el, directed = TRUE, vertices = attrs)
+
+            rm(a)
+            rm(b)
+        }
+
+        png(file = paste(&quot;Endresult complex net.png&quot;, sep = &quot;&quot;), 
+            width = 2400, height = 2400, pointsize=25)
+            plot((endresult))
+            #text(-0.5,-1.2,paste(&quot;Assembled network contains &quot;,length(motifsZ),&quot; motifs(&quot;,impMotifIndex[i],&quot;).&quot;,sep=&quot;&quot;))
+            #title(&quot;Simplified&quot;)
+        dev.off()
+
+        png(file = paste(&quot;Endresult simple net.png&quot;, sep = &quot;&quot;), 
+            width = 2400, height = 2400, pointsize=25)
+            plot(simplify(endresult))
+            #text(-0.5,-1.2,paste(&quot;Assembled network contains &quot;,length(motifsZ),&quot; motifs(&quot;,impMotifIndex[i],&quot;).&quot;,sep=&quot;&quot;))
+            #title(&quot;Simplified&quot;)
+        dev.off()               
+
+        
+        # calculate difference and check the overlap
+        
+        ## NO motif filter
+        # missed this amount of edges:
+        NoE = E(graphInfer)%in%E(graph.True)
+        print(paste(sum(NoE),&quot;/&quot;,length(NoE),&quot; of total &quot;,length(E(graph.True)),&quot; edges correct (inferred net)&quot;,sep=&quot;&quot;))
+        
+        # missed this amount of nodes:
+        NoN = V(graphInfer)%in%V(graph.True)
+        print(paste(sum(NoN),&quot;/&quot;,length(NoN),&quot; of total &quot;,length(V(graph.True)),&quot; nodes correct (inferred net)&quot;,sep=&quot;&quot;))
+        
+        ## motif filter
+        # missed this amount of edges:
+        YesE = E(simplify(endresult))%in%E(graph.True)
+        print(paste(sum(YesE),&quot;/&quot;,length(YesE),&quot; of total &quot;,length(E(graph.True)),&quot; edges correct (motif filter)&quot;,sep=&quot;&quot;))
+        
+        # missed this amount of nodes:
+        YesN = V(simplify(endresult))%in%V(graph.True)
+        print(paste(sum(YesN),&quot;/&quot;,length(YesN),&quot; of total &quot;,length(V(graph.True)),&quot; nodes correct (motif filter)&quot;,sep=&quot;&quot;))
+        # ...to this!
+        
+        # Cytoscape!
+        if(runCytoscape==T){
+            createNetworkFromIgraph(graphInfer, title=&quot;Inferred_network&quot;,collection=graph.name)
+            copyVisualStyle(&quot;default&quot;,&quot;MyStyle01&quot;)
+            setVisualStyle(&quot;MyStyle01&quot;)
+            setEdgeTargetArrowShapeDefault(&quot;Arrow&quot;, style.name = &quot;MyStyle01&quot;)
+            layoutNetwork(layout.name = &quot;cose&quot;)
+
+            createNetworkFromIgraph(simplify(endresult), title=&quot;Inferred_Motif_network&quot;,collection=graph.name)
+            setVisualStyle(&quot;MyStyle01&quot;)
+            layoutNetwork(layout.name = &quot;cose&quot;)
+            
+            createNetworkFromIgraph(graph.True, title=&quot;True_network&quot;,collection=graph.name)
+            setVisualStyle(&quot;MyStyle01&quot;)
+            layoutNetwork(layout.name = &quot;cose&quot;)
+        }
+        
+        rm(endresult)
+    }
+    
+    setwd(&#39;..&#39;) 
+}
+
+
+#-----------------------------------------------------------------------------------------------------#
+#                           Bayesian networks (GRENITS) 
+#-----------------------------------------------------------------------------------------------------#
+# directed
+# 20N 16L
+# 
+output.folder &lt;- paste(data_dir,&quot;Bayes&quot;,sep=&quot;&quot;) 
+LinearNet(output.folder, data)
+analyse.output(output.folder)
+
+
+prob.file &lt;- paste(output.folder, &quot;/NetworkProbability_Matrix.txt&quot;, sep = &quot;&quot;)
+prob.mat &lt;- read.table(prob.file)
+prob.mat &lt;- as.matrix(prob.mat)
+threshold = 0.08
+prob.mat[prob.mat &lt; threshold] &lt;- 0
+
+graph.Bayes &lt;- igraph::graph_from_adjacency_matrix(prob.mat,weighted=TRUE)
+plot(graph.Bayes)
+#nodes: 20
+V(graph.Bayes)
+length(V(graph.Bayes))
+
+#links: 16
+E(graph.Bayes)
+length(E(graph.Bayes))
+fGetMotifsFromGraph(&quot;graph.Bayes&quot;,motifsize)
+#createNetworkFromIgraph(graph.Bayes, title=&quot;GRENITS&quot;,collection=&quot;Bayesian&quot;)
+#copyVisualStyle(&quot;default&quot;,&quot;GRENITS&quot;)
+#setVisualStyle(&quot;GRENITS&quot;)
+#setEdgeTargetArrowShapeDefault(&quot;Arrow&quot;, style.name = &quot;GRENITS&quot;)
+
+
+#-----------------------------------------------------------------------------------------------------#
+#                           Correlation (corr) 
+#-----------------------------------------------------------------------------------------------------#
+#undirected
+# 20N 72L
+
+# BLOCKED ...
+if(F){
+    res.cor &lt;- correlate(t(data), diagonal = 0)
+    row.names(res.cor) &lt;- res.cor$rowname
+    res.cor[1] &lt;- NULL
+
+    res.cor.filtered &lt;- res.cor
+    res.cor.filtered[res.cor.filtered &lt; 0.3] &lt;- 0
+
+    graph.Cor &lt;- igraph::graph_from_adjacency_matrix(as.matrix(res.cor.filtered), weighted=TRUE)
+    plot(graph.Cor)
+    #nodes: 20
+    V(graph.Cor)
+    length(V(graph.Cor))
+
+    #links: 72
+    E(graph.Cor)
+    length(E(graph.Cor))
+    fGetMotifsFromGraph(&quot;graph.Cor&quot;,motifsize)
+    #createNetworkFromIgraph(graph.Cor,title=&quot;Correlation_Network&quot;,collection=&quot;Correlation&quot;)
+}
+# ... BLOCKED
+
+#-----------------------------------------------------------------------------------------------------#
+#                           Regression (Ensemble of trees)
+#-----------------------------------------------------------------------------------------------------#
+# undirected -&gt;directed..?
+# 20N 40L
+weightMat &lt;- GENIE3(as.matrix(data))
+
+linkList &lt;- getLinkList(weightMat)
+
+linkList &lt;- getLinkList(weightMat, reportMax=5)
+linkList &lt;- getLinkList(weightMat, threshold=0.1)
+
+graph.Reg &lt;- igraph::graph_from_data_frame(linkList, directed=TRUE, vertices=rownames(data))
+plot(graph.Reg)
+#nodes: 20
+V(graph.Reg)
+length(V(graph.Reg))
+
+#links: 40
+E(graph.Reg)
+length(E(graph.Reg))
+fGetMotifsFromGraph(&quot;graph.Reg&quot;,motifsize)
+
+#createNetworkFromIgraph(graph.Reg, title=&quot;GENIE3_Network&quot;,collection=&quot;GENIE3&quot;)
+#copyVisualStyle(&quot;default&quot;,&quot;GENIE3&quot;)
+#setVisualStyle(&quot;GENIE3&quot;)
+#setEdgeTargetArrowShapeDefault(&quot;Arrow&quot;, style.name = &quot;GENIE3&quot;)
+
+
+#-----------------------------------------------------------------------------------------------------#
+#                           Mutual information
+#-----------------------------------------------------------------------------------------------------#
+#directed
+
+
+mi &lt;- knnmi.all(data)
+grn1 &lt;- aracne.a(mi)
+grn2 &lt;- aracne.m(mi)
+grn3 &lt;- clr(mi)
+grn4 &lt;- mrnet(mi)
+
+if(F){ #LOCKED
+    graph.MU1 &lt;- igraph::graph_from_adjacency_matrix(grn1, weighted=TRUE)
+    plot(graph.MU1)
+    #nodes: 20
+    V(graph.MU1)
+    length(V(graph.MU1))
+
+    #links: 152
+    E(graph.MU1)
+    length(E(graph.MU1))
+
+    #createNetworkFromIgraph(graph.MU1, title=&quot;ARACNE.A_Network&quot;,collection=&quot;MI&quot;)
+    #setVisualStyle(&quot;default&quot;)
+
+    graph.MU3 &lt;- igraph::graph_from_adjacency_matrix(grn3, weighted=TRUE)
+    plot(graph.MU3)
+    #nodes: 20
+    V(graph.MU3)
+    length(V(graph.MU3))
+
+    #links: 232
+    E(graph.MU3)
+    length(E(graph.MU3))
+
+    #createNetworkFromIgraph(graph.MU3, title=&quot;CLR_Network&quot;,collection=&quot;MI&quot;)
+    #setVisualStyle(&quot;default&quot;)
+
+    graph.MU4 &lt;- igraph::graph_from_adjacency_matrix(grn4, weighted=TRUE)
+    plot(graph.MU4)
+    #nodes: 20
+    V(graph.MU4)
+    length(V(graph.MU4))
+
+    #links: 234
+    E(graph.MU4)
+    length(E(graph.MU4))
+
+    #createNetworkFromIgraph(graph.MU4, title=&quot;MRNET_Network&quot;,collection=&quot;MI&quot;)
+    #setVisualStyle(&quot;default&quot;)
+}
+
+graph.MU2 &lt;- igraph::graph_from_adjacency_matrix(grn2, weighted=TRUE)
+plot(graph.MU2)
+#nodes: 20
+V(graph.MU2)
+length(V(graph.MU2))
+
+#links: 82
+E(graph.MU2)
+length(E(graph.MU2))
+fGetMotifsFromGraph(&quot;graph.MU2&quot;,motifsize)
+#createNetworkFromIgraph(graph.MU2, title=&quot;ARACNE.M_Network&quot;,collection=&quot;MI&quot;)
+#setVisualStyle(&quot;default&quot;)</code></pre>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

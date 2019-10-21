@@ -40,7 +40,7 @@ This block installs all packages which are required during this algorithm. It it
 
 #### Script block 2: SETTINGS
 In this script some parameters can be changed, these are located in this block. This way changing parameters is easy and robust.
-```{r}
+```{}
 	options(stringsAsFactors 	= F)
 	motifsize 					= 3
 	DataFolderLocation 			= "/Github/MSB1014-Network_Biology-Project/Project/Notebook/" 	# Must be in format "/location...DatalocationFolder/"
