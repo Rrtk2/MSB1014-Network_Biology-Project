@@ -1,7 +1,7 @@
 # MSB1014-Network_Biology-Project
 This repository is the final product of the project, requested by the course MSB1014 (Network Biology).
 
-[![GitHub License](https://img.shields.io/github/license/Rrtk2/MSB1014-Network_Biology-Project)](https://github.com/Rrtk2/MSB1014-Network_Biology-Project/blob/master/LICENSE.md) ![](https://img.shields.io/badge/Status-Wrapping_up-green) [![GitHub Watches](https://img.shields.io/github/watchers/Rrtk2/MSB1014-Network_Biology-Project.svg?style=social&label=Watch&maxAge=2592000)](https://github.com/Rrtk2/MSB1014-Network_Biology-Project/watchers) 
+[![GitHub License](https://img.shields.io/github/license/Rrtk2/MSB1014-Network_Biology-Project)](https://github.com/Rrtk2/MSB1014-Network_Biology-Project/blob/master/LICENSE.md) ![](https://img.shields.io/badge/Status-Final-brightgreen) [![GitHub Watches](https://img.shields.io/github/watchers/Rrtk2/MSB1014-Network_Biology-Project.svg?style=social&label=Watch&maxAge=2592000)](https://github.com/Rrtk2/MSB1014-Network_Biology-Project/watchers) 
 
 
 #### What is this project about
@@ -27,7 +27,7 @@ RRtK2 (owner and contributor)
 
 
 #### Status of project
-Wrapping up. Small edits. Bugfixes.
+Final. Completed.
 
 
 #### Copyright and authors
