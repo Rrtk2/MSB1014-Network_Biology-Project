@@ -9,7 +9,7 @@ With the era of high-throughput data, the amount of gene expression, microRNA ex
 This project aims to estimate the improvement of network inference of regulatory networks by using network motifs.
 
 #### Usage
-Please examinate the [report](/Project/Report) folder and please look at the [GitHub notebook](/AUTHORS.md)
+Please examinate the [report](/Project/Report) folder and please look at the [GitHub notebook](https://rrtk2.github.io/MSB1014-Network_Biology-Project/).
 
 
 #### Contact
