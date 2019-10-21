@@ -7,7 +7,7 @@
 #
 # Author comment:
 #   Rick Reijnders
-#   Script version: 11-10-2019
+#   Script version: 21-10-2019
 
 # File description:
 #	Name
