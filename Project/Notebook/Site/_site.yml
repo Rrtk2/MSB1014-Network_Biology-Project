@@ -1,6 +1,6 @@
 name: "my-website"
 navbar:
-  title: "MSB1015 - Scientific Programming - Assignment 2"
+  title: "Network Biology"
   left:
     - text: "Home"
       href: index.html
