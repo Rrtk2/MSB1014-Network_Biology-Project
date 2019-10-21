@@ -1,0 +1,12 @@
+name: "my-website"
+navbar:
+  title: "MSB1015 - Scientific Programming - Assignment 2"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Used packages"
+      href: version.html
+    - text: "Code"
+      href: raw.html
+    - text: "About"
+      href: about.html
